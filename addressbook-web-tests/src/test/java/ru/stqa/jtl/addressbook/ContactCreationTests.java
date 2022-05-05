@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class ContactCreationTests {
   private WebDriver driver;
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
     driver = new ChromeDriver();
@@ -73,7 +73,7 @@ public class ContactCreationTests {
     driver.findElement(By.linkText("add new")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     logout();
     driver.quit();
