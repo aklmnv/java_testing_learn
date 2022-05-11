@@ -9,7 +9,7 @@ public class ContractModificationTests extends TestBase{
     public void testContractModification(){
         app.getNavigationHelper().gotoHomePage();
         app.getContactHelper().initContractModification();
-        app.getContactHelper().fillContactCreationForm(new ContactData("test1 name", "test1 middle name", "test1 last name", "test1 address", "89112233444", "test1@test.ru"));
+        app.getContactHelper().fillContactForm(new ContactData("test1 name", "test1 middle name", "test1 last name", "test1 address", "89112233444", "test1@test.ru", null), false);
         app.getContactHelper().submitContractModification();
         app.getContactHelper().returnToHomePage();
     }

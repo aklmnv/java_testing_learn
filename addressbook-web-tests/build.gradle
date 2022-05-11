@@ -6,6 +6,7 @@ repositories {
 
 dependencies {
     implementation 'org.testng:testng:7.5'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.4'
     implementation 'org.seleniumhq.selenium:selenium-api:4.1.4'
     implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.1.4'
     implementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.1.4'
