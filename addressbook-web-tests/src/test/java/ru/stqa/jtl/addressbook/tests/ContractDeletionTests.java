@@ -1,8 +1,11 @@
 package ru.stqa.jtl.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.GroupData;
+
+import java.util.List;
 
 public class ContractDeletionTests extends TestBase{
 
@@ -17,8 +20,14 @@ public class ContractDeletionTests extends TestBase{
             app.getNavigationHelper().gotoContactCreationPage();
             app.getContactHelper().createContact(new ContactData("test name", "test middle name", "test last name", "test address", "89112233444", "test@test.ru", "test1"));
         }
-        app.getContactHelper().selectContract();
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContract(before.size() - 1);
         app.getContactHelper().deleteSelectedContracts();
         app.getContactHelper().closeConfirmAlert();
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
     }
 }

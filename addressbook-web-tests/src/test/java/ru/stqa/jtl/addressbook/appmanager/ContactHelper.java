@@ -2,9 +2,14 @@ package ru.stqa.jtl.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
+import ru.stqa.jtl.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -35,8 +40,8 @@ public class ContactHelper extends HelperBase{
         }
     }
 
-    public void selectContract() {
-        click(By.name("selected[]"));
+    public void selectContract( int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContracts() {
@@ -63,5 +68,19 @@ public class ContactHelper extends HelperBase{
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element: elements){
+            List<WebElement> variables = element.findElements(By.tagName("td"));
+            String lastName = variables.get(1).getText();
+            String name = variables.get(2).getText();
+            int id = Integer.parseInt(variables.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id, name, null, lastName, null, null, null, null );
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
