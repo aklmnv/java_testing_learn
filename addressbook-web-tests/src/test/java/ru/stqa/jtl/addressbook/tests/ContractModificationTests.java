@@ -17,7 +17,7 @@ public class ContractModificationTests extends TestBase{
         if (app.contact().list().size() == 0){
             app.goTo().groupPage();
             if (!app.group().isThereAGroup()){
-                app.group().create(new GroupData("test1", null, null));
+                app.group().create(new GroupData().withName("test1"));
             }
             app.goTo().contactCreationPage();
             app.contact().create(new ContactData("test name", "test middle name", "test last name", "test address", "89112233444", "test@test.ru", "test1"));
