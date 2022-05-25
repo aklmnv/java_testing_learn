@@ -1,6 +1,7 @@
 package ru.stqa.jtl.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -8,7 +9,9 @@ import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -43,6 +46,10 @@ public class ContactHelper extends HelperBase{
         wd.findElements(By.name("selected[]")).get(index).click();
     }
 
+    private void selectContractById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "'")).click();
+    }
+
     public void deleteSelectedContracts() {
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -51,8 +58,8 @@ public class ContactHelper extends HelperBase{
         wd.switchTo().alert().accept();
     }
 
-    public void initContractModification(int index) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    public void initContractModificationById(int id) {
+        wd.findElement(By.xpath("//input[@value = '" + id + "']/../..//img[@alt='Edit']")).click();
     }
 
     public void submitContractModification() {
@@ -82,8 +89,21 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
-    public void modify(int index, ContactData contact) {
-        initContractModification(index);
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element: elements){
+            List<WebElement> variables = element.findElements(By.tagName("td"));
+            String lastName = variables.get(1).getText();
+            String name = variables.get(2).getText();
+            int id = Integer.parseInt(variables.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
+        }
+        return contacts;
+    }
+
+    public void modify(ContactData contact) {
+        initContractModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContractModification();
         returnToHomePage();
@@ -94,4 +114,11 @@ public class ContactHelper extends HelperBase{
         deleteSelectedContracts();
         closeConfirmAlert();
     }
+
+    public void delete(ContactData contract) {
+        selectContractById(contract.getId());
+        deleteSelectedContracts();
+        closeConfirmAlert();
+    }
+
 }
