@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
-import ru.stqa.jtl.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +59,7 @@ public class ContactHelper extends HelperBase{
         click(By.name("update"));
     }
 
-    public void createContact(ContactData contactData) {
+    public void create(ContactData contactData) {
         fillContactForm(contactData, true);
         sumitContactCreationForm();
         returnToHomePage();
@@ -70,7 +69,7 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements){
@@ -84,10 +83,16 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
-    public void modifyContact(int index, ContactData contact) {
+    public void modify(int index, ContactData contact) {
         initContractModification(index);
         fillContactForm(contact, false);
         submitContractModification();
         returnToHomePage();
+    }
+
+    public void delete(int index) {
+        selectContract(index);
+        deleteSelectedContracts();
+        closeConfirmAlert();
     }
 }
