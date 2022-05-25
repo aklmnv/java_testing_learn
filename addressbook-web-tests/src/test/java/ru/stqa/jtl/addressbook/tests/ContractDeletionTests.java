@@ -19,7 +19,7 @@ public class ContractDeletionTests extends TestBase{
                 app.group().create(new GroupData().withName("test1"));
             }
             app.goTo().contactCreationPage();
-            app.contact().create(new ContactData("test name", "test middle name", "test last name", "test address", "89112233444", "test@test.ru", "test1"));
+            app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withGroup("test1"));
         }
     }
 
