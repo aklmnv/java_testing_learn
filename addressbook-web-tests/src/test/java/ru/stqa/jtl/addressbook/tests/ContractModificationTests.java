@@ -27,7 +27,6 @@ public class ContractModificationTests extends TestBase{
         app.getContactHelper().fillContactForm(contact, false);
         app.getContactHelper().submitContractModification();
         app.getContactHelper().returnToHomePage();
-
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
