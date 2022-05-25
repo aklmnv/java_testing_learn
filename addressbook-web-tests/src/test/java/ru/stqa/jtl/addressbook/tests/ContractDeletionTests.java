@@ -1,19 +1,20 @@
 package ru.stqa.jtl.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
+import ru.stqa.jtl.addressbook.model.Contacts;
 import ru.stqa.jtl.addressbook.model.GroupData;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContractDeletionTests extends TestBase{
 
     @BeforeMethod
     public void ensurePrecondishions(){
         app.goTo().homePage();
-        if (app.contact().list().size() == 0){
+        if (app.contact().all().size() == 0){
             app.goTo().groupPage();
             if (!app.group().isThereAGroupWithName("test1")){
                 app.group().create(new GroupData().withName("test1"));
@@ -25,13 +26,11 @@ public class ContractDeletionTests extends TestBase{
 
     @Test
     public void testContractDeletion(){
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData deletedContract = before.stream().iterator().next();
         app.contact().delete(deletedContract);
-        Set<ContactData> after = app.contact().all();
-        Assert.assertEquals(after.size(), before.size() - 1);
-
-        before.remove(deletedContract);
-        Assert.assertEquals(before, after);
+        Contacts after = app.contact().all();
+        assertThat(after.size(), equalTo(before.size() - 1));
+        assertThat(after, equalTo(before.without(deletedContract)));
     }
 }

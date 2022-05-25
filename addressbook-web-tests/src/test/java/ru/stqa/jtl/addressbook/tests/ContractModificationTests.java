@@ -1,21 +1,20 @@
 package ru.stqa.jtl.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
+import ru.stqa.jtl.addressbook.model.Contacts;
 import ru.stqa.jtl.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContractModificationTests extends TestBase{
 
     @BeforeMethod
     public void ensurePrecondishions(){
         app.goTo().homePage();
-        if (app.contact().list().size() == 0){
+        if (app.contact().all().size() == 0){
             app.goTo().groupPage();
             if (!app.group().isThereAGroupWithName("test1")){
                 app.group().create(new GroupData().withName("test1"));
@@ -27,16 +26,13 @@ public class ContractModificationTests extends TestBase{
 
     @Test
     public void testContractModification(){
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData modifiedContact = before.stream().iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru");
         app.contact().modify(contact);
-        Set<ContactData> after = app.contact().all();
-        Assert.assertEquals(after.size(), before.size());
-
-        before.remove(modifiedContact);
-        before.add(contact);
-        Assert.assertEquals(before, after);
+        Contacts after = app.contact().all();
+        assertThat(after.size(), equalTo(before.size()));
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 
 }

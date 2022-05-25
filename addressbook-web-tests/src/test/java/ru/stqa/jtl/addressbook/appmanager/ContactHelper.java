@@ -1,17 +1,14 @@
 package ru.stqa.jtl.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
+import ru.stqa.jtl.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -40,10 +37,6 @@ public class ContactHelper extends HelperBase{
         }else{
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-    }
-
-    public void selectContract( int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     private void selectContractById(int id) {
@@ -76,21 +69,8 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element: elements){
-            List<WebElement> variables = element.findElements(By.tagName("td"));
-            String lastName = variables.get(1).getText();
-            String name = variables.get(2).getText();
-            int id = Integer.parseInt(variables.get(0).findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
-        }
-        return contacts;
-    }
-
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements){
             List<WebElement> variables = element.findElements(By.tagName("td"));
@@ -107,12 +87,6 @@ public class ContactHelper extends HelperBase{
         fillContactForm(contact, false);
         submitContractModification();
         returnToHomePage();
-    }
-
-    public void delete(int index) {
-        selectContract(index);
-        deleteSelectedContracts();
-        closeConfirmAlert();
     }
 
     public void delete(ContactData contract) {

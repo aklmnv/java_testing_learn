@@ -11,4 +11,5 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.1.4'
     implementation 'org.seleniumhq.selenium:selenium-firefox-driver:4.1.4'
     implementation 'org.seleniumhq.selenium:selenium-ie-driver:4.1.4'
+    implementation 'org.hamcrest:hamcrest:2.2'
 }
