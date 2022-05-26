@@ -20,7 +20,7 @@ public class ContractModificationTests extends TestBase{
                 app.group().create(new GroupData().withName("test1"));
             }
             app.goTo().contactCreationPage();
-            app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withGroup("test1"));
+            app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withGroup("test1").withMobilePhone("4-38137-9887").withWorkPhone("76788"));
         }
     }
 
@@ -28,7 +28,7 @@ public class ContractModificationTests extends TestBase{
     public void testContractModification(){
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.stream().iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru");
+        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withMobilePhone("4-3837-9887").withWorkPhone("767188");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.contact().all();
