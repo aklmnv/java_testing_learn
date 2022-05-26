@@ -62,6 +62,7 @@ public class ContactHelper extends HelperBase{
     public void create(ContactData contactData) {
         fillContactForm(contactData, true);
         sumitContactCreationForm();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -69,29 +70,37 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.name("selected[]"));
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null){
+            return new Contacts(contactCache);
+        }
+
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements){
             List<WebElement> variables = element.findElements(By.tagName("td"));
             String lastName = variables.get(1).getText();
             String name = variables.get(2).getText();
             int id = Integer.parseInt(variables.get(0).findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
+            contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
     public void modify(ContactData contact) {
         initContractModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContractModification();
+        contactCache = null;
         returnToHomePage();
     }
 
     public void delete(ContactData contract) {
         selectContractById(contract.getId());
         deleteSelectedContracts();
+        contactCache = null;
         closeConfirmAlert();
     }
 
