@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.jtl.addressbook.model.GroupData;
-import ru.stqa.jtl.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileWriter;

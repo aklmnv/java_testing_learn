@@ -1,0 +1,67 @@
+[
+  {
+    "firstName": "test name 0",
+    "middleName": "test middle name 0",
+    "lastName": "test last name 0",
+    "address": "test address 0",
+    "homePhone": "89112233444",
+    "mobilePhone": "4-3837-98787",
+    "workPhone": "76788",
+    "email": "test@test.ru",
+    "email2": "aaaa",
+    "email3": "ghfdtrsr",
+    "group": "test1"
+  },
+  {
+    "firstName": "test name 1",
+    "middleName": "test middle name 1",
+    "lastName": "test last name 1",
+    "address": "test address 1",
+    "homePhone": "89112233444",
+    "mobilePhone": "4-3837-98787",
+    "workPhone": "76788",
+    "email": "test@test.ru",
+    "email2": "aaaa",
+    "email3": "ghfdtrsr",
+    "group": "test1"
+  },
+  {
+    "firstName": "test name 2",
+    "middleName": "test middle name 2",
+    "lastName": "test last name 2",
+    "address": "test address 2",
+    "homePhone": "89112233444",
+    "mobilePhone": "4-3837-98787",
+    "workPhone": "76788",
+    "email": "test@test.ru",
+    "email2": "aaaa",
+    "email3": "ghfdtrsr",
+    "group": "test1"
+  },
+  {
+    "firstName": "test name 3",
+    "middleName": "test middle name 3",
+    "lastName": "test last name 3",
+    "address": "test address 3",
+    "homePhone": "89112233444",
+    "mobilePhone": "4-3837-98787",
+    "workPhone": "76788",
+    "email": "test@test.ru",
+    "email2": "aaaa",
+    "email3": "ghfdtrsr",
+    "group": "test1"
+  },
+  {
+    "firstName": "test name 4",
+    "middleName": "test middle name 4",
+    "lastName": "test last name 4",
+    "address": "test address 4",
+    "homePhone": "89112233444",
+    "mobilePhone": "4-3837-98787",
+    "workPhone": "76788",
+    "email": "test@test.ru",
+    "email2": "aaaa",
+    "email3": "ghfdtrsr",
+    "group": "test1"
+  }
+]

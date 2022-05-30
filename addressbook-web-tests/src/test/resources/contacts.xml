@@ -1,0 +1,67 @@
+<list>
+  <contact>
+    <firstName>test name 0</firstName>
+    <middleName>test middle name 0</middleName>
+    <lastName>test last name 0</lastName>
+    <address>test address 0</address>
+    <homePhone>89112233444</homePhone>
+    <mobilePhone>4-3837-98787</mobilePhone>
+    <workPhone>76788</workPhone>
+    <email>test@test.ru</email>
+    <email2>aaaa</email2>
+    <email3>ghfdtrsr</email3>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstName>test name 1</firstName>
+    <middleName>test middle name 1</middleName>
+    <lastName>test last name 1</lastName>
+    <address>test address 1</address>
+    <homePhone>89112233444</homePhone>
+    <mobilePhone>4-3837-98787</mobilePhone>
+    <workPhone>76788</workPhone>
+    <email>test@test.ru</email>
+    <email2>aaaa</email2>
+    <email3>ghfdtrsr</email3>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstName>test name 2</firstName>
+    <middleName>test middle name 2</middleName>
+    <lastName>test last name 2</lastName>
+    <address>test address 2</address>
+    <homePhone>89112233444</homePhone>
+    <mobilePhone>4-3837-98787</mobilePhone>
+    <workPhone>76788</workPhone>
+    <email>test@test.ru</email>
+    <email2>aaaa</email2>
+    <email3>ghfdtrsr</email3>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstName>test name 3</firstName>
+    <middleName>test middle name 3</middleName>
+    <lastName>test last name 3</lastName>
+    <address>test address 3</address>
+    <homePhone>89112233444</homePhone>
+    <mobilePhone>4-3837-98787</mobilePhone>
+    <workPhone>76788</workPhone>
+    <email>test@test.ru</email>
+    <email2>aaaa</email2>
+    <email3>ghfdtrsr</email3>
+    <group>test1</group>
+  </contact>
+  <contact>
+    <firstName>test name 4</firstName>
+    <middleName>test middle name 4</middleName>
+    <lastName>test last name 4</lastName>
+    <address>test address 4</address>
+    <homePhone>89112233444</homePhone>
+    <mobilePhone>4-3837-98787</mobilePhone>
+    <workPhone>76788</workPhone>
+    <email>test@test.ru</email>
+    <email2>aaaa</email2>
+    <email3>ghfdtrsr</email3>
+    <group>test1</group>
+  </contact>
+</list>
