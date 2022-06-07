@@ -36,6 +36,7 @@
         <property name="hbm2ddl.auto">validate</property>
 
         <mapping class="ru.stqa.jtl.addressbook.model.GroupData"/>
+        <mapping class="ru.stqa.jtl.addressbook.model.ContactData"/>
 
     </session-factory>
 
