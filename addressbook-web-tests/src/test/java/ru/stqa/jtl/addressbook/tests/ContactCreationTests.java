@@ -65,13 +65,13 @@ public class ContactCreationTests extends TestBase{
       app.group().create(new GroupData().withName("test1"));
     }
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.goTo().contactCreationPage();
     File photo = new File("addressbook-web-tests/src/test/resources/scale_1200.jpg");
     contact.withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 

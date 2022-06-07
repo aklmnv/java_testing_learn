@@ -14,7 +14,7 @@ public class ContractDeletionTests extends TestBase{
     @BeforeMethod
     public void ensurePrecondishions(){
         app.goTo().homePage();
-        if (app.contact().all().size() == 0){
+        if (app.db().contacts().size() == 0){
             app.goTo().groupPage();
             if (!app.group().isThereAGroupWithName("test1")){
                 app.group().create(new GroupData().withName("test1"));
@@ -26,11 +26,11 @@ public class ContractDeletionTests extends TestBase{
 
     @Test
     public void testContractDeletion(){
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData deletedContract = before.stream().iterator().next();
         app.contact().delete(deletedContract);
         assertThat(app.contact().count(), equalTo(before.size() - 1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.without(deletedContract)));
     }
 }

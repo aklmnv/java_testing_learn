@@ -14,7 +14,7 @@ public class ContractModificationTests extends TestBase{
     @BeforeMethod
     public void ensurePrecondishions(){
         app.goTo().homePage();
-        if (app.contact().all().size() == 0){
+        if (app.db().contacts().size() == 0){
             app.goTo().groupPage();
             if (!app.group().isThereAGroupWithName("test1")){
                 app.group().create(new GroupData().withName("test1"));
@@ -26,12 +26,12 @@ public class ContractModificationTests extends TestBase{
 
     @Test
     public void testContractModification(){
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.stream().iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withMobilePhone("4-3837-9887").withWorkPhone("767188").withEmail2("aaaa").withEmail3("ghfdtrsr");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 
