@@ -20,7 +20,7 @@ public class ContractModificationTests extends TestBase{
                 app.group().create(new GroupData().withName("test1"));
             }
             app.goTo().contactCreationPage();
-            app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withGroup("test1").withMobilePhone("4-38137-9887").withWorkPhone("76788"));
+            app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withMobilePhone("4-38137-9887").withWorkPhone("76788"));
         }
     }
 

@@ -60,10 +60,6 @@ public class ContactCreationTests extends TestBase{
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
-    app.goTo().groupPage();
-    if (!app.group().isThereAGroupWithName("test1")){
-      app.group().create(new GroupData().withName("test1"));
-    }
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.goTo().contactCreationPage();
