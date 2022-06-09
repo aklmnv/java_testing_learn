@@ -15,10 +15,6 @@ public class ContractModificationTests extends TestBase{
     public void ensurePrecondishions(){
         app.goTo().homePage();
         if (app.db().contacts().size() == 0){
-            app.goTo().groupPage();
-            if (!app.group().isThereAGroupWithName("test1")){
-                app.group().create(new GroupData().withName("test1"));
-            }
             app.goTo().contactCreationPage();
             app.contact().create(new ContactData().withFirstName("test name").withMiddleName("test middle name").withLastName("test last name").withAddress("test address").withHomePhone("89112233444").withEmail("test@test.ru").withMobilePhone("4-38137-9887").withWorkPhone("76788"));
         }

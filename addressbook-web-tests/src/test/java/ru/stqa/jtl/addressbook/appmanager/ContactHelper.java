@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.Contacts;
+import ru.stqa.jtl.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -38,15 +39,9 @@ public class ContactHelper extends HelperBase{
         if (contactData.getPhoto() != null) {
             attach(By.name("photo"), contactData.getPhoto());
         }
-
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-        }else{
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
     }
 
-    private void selectContractById(int id) {
+    public void selectContractById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "'")).click();
     }
 
@@ -131,5 +126,13 @@ public class ContactHelper extends HelperBase{
         String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withEmail2(email2).withEmail(email).withEmail3(email3).withAddress(address);
+    }
+
+    public void selectGroupToAdd(GroupData selectedGroup){
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(selectedGroup.getId()));
+    }
+
+    public void addContactToGroup(){
+        wd.findElement(By.name("add")).click();
     }
 }
