@@ -1,14 +1,11 @@
 package ru.stqa.jtl.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.GroupData;
 import ru.stqa.jtl.addressbook.model.Groups;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.stream.Stream;
 
 public class ContactAddToGroupTests extends TestBase{
 
@@ -56,6 +53,6 @@ public class ContactAddToGroupTests extends TestBase{
         }
         app.contact().selectGroupToAdd(selectedGroup);
         app.contact().addContactToGroup();
-        assert app.db().getContractById(selectedContact.getId()).getGroups().isPresented(selectedGroup);
+        Assert.assertTrue(app.db().getContractById(selectedContact.getId()).getGroups().isPresented(selectedGroup));
     }
 }

@@ -3,9 +3,11 @@
 <suite name="Suite1" verbose="1" >
     <test name="Groups" >
         <classes>
-            <class name="ru.stqa.jtl.addressbook.tests.GroupCreationTests" />
+            <class name="ru.stqa.jtl.addressbook.tests.ContactCreationTests" />
             <class name="ru.stqa.jtl.addressbook.tests.ContractModificationTests" />
-            <class name="ru.stqa.jtl.addressbook.tests.GroupDeletionTests" />
+            <class name="ru.stqa.jtl.addressbook.tests.ContractDeletionTests" />
+            <class name="ru.stqa.jtl.addressbook.tests.ContactAddToGroupTests" />
+            <class name="ru.stqa.jtl.addressbook.tests.ContactDeleteFromGroupTests" />
         </classes>
     </test>
 </suite>
