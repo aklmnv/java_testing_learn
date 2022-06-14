@@ -22,18 +22,9 @@ public class ContactDeleteFromGroupTests extends TestBase{
 
     @Test
     public void testContactDeleteFromGroup() {
-        app.goTo().homePage();
         GroupData selectedGroup = app.db().groups().stream().iterator().next();
-        ContactData selectedContact = null;
-        if (selectedGroup.getContacts().size() == 0){
-            selectedContact = app.db().contacts().stream().iterator().next();
-            app.contact().selectContractById(selectedContact.getId());
-            app.contact().selectGroupToAdd(selectedGroup);
-            app.contact().addContactToGroup();
-            app.goTo().homePage();
-        } else {
-            selectedContact = selectedGroup.getContacts().stream().iterator().next();
-        }
+        ContactData selectedContact = app.contact().selectContactToAddToGroup(selectedGroup, app.db().contacts());
+        app.goTo().homePage();
         app.contact().selectGroupToView(selectedGroup);
         app.contact().selectContractById(selectedContact.getId());
         app.contact().deleteContactFromGroup();

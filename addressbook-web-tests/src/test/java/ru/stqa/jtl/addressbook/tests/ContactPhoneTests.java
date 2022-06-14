@@ -1,11 +1,8 @@
 package ru.stqa.jtl.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

@@ -3,6 +3,7 @@ package ru.stqa.jtl.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.GroupData;
 import ru.stqa.jtl.addressbook.model.Groups;
 
@@ -101,5 +102,28 @@ public class GroupHelper extends HelperBase{
         deleteSelectedGroups();
         groupCache = null;
         returnToGroupPage();
+    }
+
+    public GroupData selectGroupCanAddContact(ContactData contact, Groups allGroups){
+        GroupData selectedGroup = null;
+        if (selectedGroup == null){
+            if (contact.getGroups().size() == 0){
+                selectedGroup = allGroups.stream().iterator().next();
+            } else {
+                for (GroupData group : allGroups) {
+                    int count = 0;
+                    for (GroupData contactGroup : contact.getGroups()) {
+                        if (contactGroup.equals(group)) {
+                            count++;
+                        }
+                    }
+                    if (count == 0){
+                        selectedGroup = group;
+                        break;
+                    }
+                }
+            }
+        }
+        return selectedGroup;
     }
 }

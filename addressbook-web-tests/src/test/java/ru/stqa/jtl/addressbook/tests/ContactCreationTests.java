@@ -7,7 +7,6 @@ import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.testng.annotations.*;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.Contacts;
-import ru.stqa.jtl.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.File;

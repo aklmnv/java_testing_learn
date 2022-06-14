@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.GroupData;
-import ru.stqa.jtl.addressbook.model.Groups;
 
 public class ContactAddToGroupTests extends TestBase{
 
@@ -23,7 +22,6 @@ public class ContactAddToGroupTests extends TestBase{
 
     @Test
     public void testContactAddToGroup() {
-        GroupData selectedGroup = null;
         app.goTo().homePage();
         ContactData selectedContact = app.db().contacts().stream().iterator().next();
         if (selectedContact.getGroups().equals(app.db().groups())){
@@ -32,25 +30,7 @@ public class ContactAddToGroupTests extends TestBase{
             app.goTo().homePage();
         }
         app.contact().selectContractById(selectedContact.getId());
-        if (selectedGroup == null){
-            if (selectedContact.getGroups().size() == 0){
-                selectedGroup = app.db().groups().stream().iterator().next();
-            } else {
-                Groups allGroups = app.db().groups();
-                for (GroupData group : allGroups) {
-                    int count = 0;
-                    for (GroupData contactGroup : selectedContact.getGroups()) {
-                        if (contactGroup.equals(group)) {
-                            count++;
-                        }
-                    }
-                    if (count == 0){
-                        selectedGroup = group;
-                        break;
-                    }
-                }
-            }
-        }
+        GroupData selectedGroup = app.group().selectGroupCanAddContact(selectedContact, app.db().groups());
         app.contact().selectGroupToAdd(selectedGroup);
         app.contact().addContactToGroup();
         Assert.assertTrue(app.db().getContractById(selectedContact.getId()).getGroups().isPresented(selectedGroup));

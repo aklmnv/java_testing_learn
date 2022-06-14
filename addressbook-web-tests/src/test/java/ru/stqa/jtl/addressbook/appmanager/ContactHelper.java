@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.jtl.addressbook.model.ContactData;
 import ru.stqa.jtl.addressbook.model.Contacts;
 import ru.stqa.jtl.addressbook.model.GroupData;
@@ -142,5 +141,18 @@ public class ContactHelper extends HelperBase{
 
     public void deleteContactFromGroup(){
         wd.findElement(By.name("remove")).click();
+    }
+
+    public ContactData selectContactToAddToGroup(GroupData selectedGroup, Contacts allContacts){
+        ContactData selectedContact = null;
+        if (selectedGroup.getContacts().size() == 0){
+            selectedContact = allContacts.stream().iterator().next();
+            selectContractById(selectedContact.getId());
+            selectGroupToAdd(selectedGroup);
+            addContactToGroup();
+        } else {
+            selectedContact = selectedGroup.getContacts().stream().iterator().next();
+        }
+        return selectedContact;
     }
 }

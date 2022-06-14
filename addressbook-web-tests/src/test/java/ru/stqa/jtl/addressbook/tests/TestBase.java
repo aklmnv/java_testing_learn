@@ -1,7 +1,5 @@
 package ru.stqa.jtl.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +10,6 @@ import ru.stqa.jtl.addressbook.model.Contacts;
 import ru.stqa.jtl.addressbook.model.GroupData;
 import ru.stqa.jtl.addressbook.model.Groups;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
