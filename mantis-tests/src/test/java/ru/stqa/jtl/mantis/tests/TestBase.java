@@ -4,13 +4,11 @@ import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
-import ru.stqa.jtl.mantis.appmanadger.ApplicationManager;
+import ru.stqa.jtl.mantis.appmanager.ApplicationManager;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
