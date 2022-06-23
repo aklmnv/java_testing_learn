@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import ru.stqa.jtl.mantis.appmanager.ApplicationManager;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -20,11 +21,13 @@ public class TestBase {
     @BeforeSuite
     public void setUp() throws Exception {
         app.init();
+        app.ftp().upload(new File("mantis-tests/src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
+        app.ftp().restore("config_inc.php.bak", "config_inc.php");
     }
 
     @BeforeMethod
