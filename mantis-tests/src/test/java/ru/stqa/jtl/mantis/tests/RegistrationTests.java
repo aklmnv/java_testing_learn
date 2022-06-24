@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.jtl.mantis.model.MailMessage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,6 +37,21 @@ public class RegistrationTests extends TestBase{
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
         return regex.getText(mailMessage.text);
     }
+
+    @Test(enabled = false)
+    public void testRegistrationWithJames() throws IOException, MessagingException {
+        long now = System.currentTimeMillis();
+        String email = String.format("user$s@localhost.localdomain", now);
+        String user = String.format("user%s", now);
+        String password = "password";
+        app.james().createUser(user, password);
+        app.registration().start(user, email);
+        List<MailMessage> mailMessages =  app.james().waitForMail(user, password, 10000);
+        String confirmationLink = findConfirmationLink(mailMessages, email);
+        app.registration().finish(confirmationLink, password);
+        assertTrue(app.newSession().login(user, password));
+    }
+
 
     @AfterMethod(alwaysRun = true)
     public void stopMailServer(){
