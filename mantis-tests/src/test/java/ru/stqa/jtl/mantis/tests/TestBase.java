@@ -1,14 +1,18 @@
 package ru.stqa.jtl.mantis.tests;
 
+import com.google.common.collect.Streams;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.jtl.mantis.appmanager.ApplicationManager;
+import ru.stqa.jtl.mantis.model.MailMessage;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -40,5 +44,9 @@ public class TestBase {
         logger.info("Stop test " + m.getName());
     }
 
-
+    public String findLinkInMail(List<MailMessage> mailMessages, String email) {
+        MailMessage mailMessage = Streams.findLast(mailMessages.stream().filter((m) -> m.to.equals(email))).get();
+        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+        return regex.getText(mailMessage.text);
+    }
 }
