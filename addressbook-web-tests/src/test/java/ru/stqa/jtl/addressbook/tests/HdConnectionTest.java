@@ -19,7 +19,7 @@ public class HdConnectionTest {
     protected void setUp() throws Exception {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate1.cfg.xml
+                .configure() // configures settings from hibernate.cfg.xml
                 .build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
