@@ -7,15 +7,21 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests extends TestBase{
+
+    @Test
+    public void testCheckSkiped() throws IOException {
+        skipIfNotFixed(2048);
+    }
+
     @Test
     public void testCreateIssue() throws IOException {
         Set<Issue> oldIssues = getIssues();
@@ -43,7 +49,4 @@ public class RestTests {
         }.getType());
     }
 
-    private Executor getExecuter() {
-        return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
-    }
 }
